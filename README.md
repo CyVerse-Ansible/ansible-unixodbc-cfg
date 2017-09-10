@@ -23,11 +23,11 @@ Variable                    | Default            | Comment
 
 Each item in the `unixodbc_cfg_sources` dictionary has a key that is the name of the source with the value being a map with the following fields.
 
-Field               | Required | Comments
-------------------- | -------- | --------
-`driver_file`       | yes      | The driver file name for the data source
-`driver_properties` | no       | A dictionary containing the properties passed on to the data source driver.
-`tracefile`         | no       | This is the file where a trace will be written. If this field isn't present or is null, no trace will be will written.
+Field               | Required | Default | Comment
+------------------- | -------- | ------- | -------
+`driver_file`       | yes      |         | The driver file name for the data source
+`driver_properties` | no       | {}      | A dictionary containing the properties passed on to the data source driver.
+`tracefile`         | no       | null    | This is the file where a trace will be written. If this field isn't present, is `null`, or is empty, no trace will be will written.
 
 
 Dependencies
