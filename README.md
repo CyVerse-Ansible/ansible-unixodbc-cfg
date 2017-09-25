@@ -1,6 +1,7 @@
 unixodbc-cfg
 ============
 [![Build Status](https://travis-ci.org/CyVerse-Ansible/ansible-unixodbc-cfg.svg?branch=master)](https://travis-ci.org/CyVerse-Ansible/ansible-unixodbc-cfg)
+[![Ansible Galaxy](https://img.shields.io/ansible/role/20679.svg)](https://galaxy.ansible.com/CyVerse-Ansible/unixodbc-cfg/)
 
 This role manages the configuration files for unixODBC. At the moment, it can configure user `.odbc.ini` files, but in the future it will be able to manage system `odbc.ini` and `odbcinst.ini` files.
 
