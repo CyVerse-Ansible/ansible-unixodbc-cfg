@@ -1,2 +1,3 @@
 ---
 - include: test-template.yml
+- include: test-deposition.yml

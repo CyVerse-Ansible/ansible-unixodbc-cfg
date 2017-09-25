@@ -1,0 +1,12 @@
+---
+- name: test that the defaults are correctly placed
+  hosts: localhost
+  roles:
+    - role: ../../ansible-unixodbc-cfg
+
+  post_tasks:
+    - name: verify that .odbc.ini is deposited
+      stat:
+        path: "{{ ansible_env.HOME }}/.odbc.ini"
+      register: response
+      failed_when: not response.stat.exists or response.stat.pw_name != ansible_env.USER

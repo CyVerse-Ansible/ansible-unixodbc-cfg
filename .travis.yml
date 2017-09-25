@@ -28,5 +28,15 @@ script:
   # Test template expansion
   - ansible-playbook --inventory-file=tests/inventory tests/test-template.yml
 
+  # Test deposition
+  - ansible-playbook --inventory-file=tests/inventory tests/test-deposition.yml
+
+  # Idempotence test
+  - >
+    ansible-playbook --inventory-file=tests/inventory tests/test-deposition.yml \
+      | grep --quiet 'changed=0.*failed=0' \
+        && (echo 'Idempotence test: pass' && exit 0) \
+        || (echo 'Idempotence test: fail' && exit 1)
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
