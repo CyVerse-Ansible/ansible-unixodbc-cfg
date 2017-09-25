@@ -25,3 +25,19 @@
         path: /tmp/.odbc.ini
       register: response
       failed_when: not response.stat.exists or response.stat.pw_name != ansible_user
+
+
+- name: test that a custom user can be set
+  hosts: localhost
+  become: true
+  roles:
+    - role: ../../ansible-unixodbc-cfg
+      vars:
+        unixodbc_cfg_user: user
+
+  post_tasks:
+    - name: verify that .odbc.ini is deposited
+      stat:
+        path: /home/user/.odbc.ini
+      register: response
+      failed_when: not response.stat.exists or response.stat.pw_name != 'user'
