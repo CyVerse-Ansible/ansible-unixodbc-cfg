@@ -1,0 +1,14 @@
+{% for source, properties in _unixodbc_cfg_sources.iteritems() %}
+[{{ source }}]
+driver = {{ properties.driver_file }}
+{%   if properties.tracefile is defined and properties.tracefile != none %}
+trace = on
+tracefile = {{ properties.tracefile }}
+{%   endif %}
+{%   if properties.driver_properties is defined and properties.driver_properties != none %}
+{%     for property, value in properties.driver_properties.iteritems() %}
+{{ property }} = {{ value }}
+{%     endfor %}
+{%   endif %}
+
+{% endfor %}

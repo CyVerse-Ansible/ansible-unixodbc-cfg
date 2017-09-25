@@ -1,0 +1,5 @@
+---
+# defaults file for ansible-unixodbc-cfg
+unixodbc_cfg_odbcini_path: null
+unixodbc_cfg_sources: null
+unixodbc_cfg_user: null

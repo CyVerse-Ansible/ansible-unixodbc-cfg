@@ -1,0 +1,4 @@
+---
+unixodbc_cfg_sources:
+  'data source':
+    driver_file: /path/to/driver/shared/object

@@ -1,0 +1,68 @@
+---
+- name: test default variables generate correct .odbc.ini
+  hosts: localhost
+  vars_files:
+    - ../defaults/main.yml
+    - ../vars/main.yml
+  vars:
+    odbc: "{{ lookup('template', '../templates/odbc.ini.j2') }}"
+  tasks:
+    - name: verify odbc.ini is empty
+      assert:
+        that:
+          - odbc | trim | length == 0
+
+
+- name: test one source with no options
+  hosts: localhost
+  vars_files:
+    - ../defaults/main.yml
+    - vars/one_source.yml
+    - ../vars/main.yml
+  vars:
+    odbc: "{{ lookup('template', '../templates/odbc.ini.j2') }}"
+  tasks:
+    - name: verify odbc.ini content
+      assert:
+        that:
+          - odbc | search('[data source]')
+          - odbc | search('driver = /path/to/driver/shared/object')
+
+
+- name: test one source with tracefile
+  hosts: localhost
+  vars_files:
+    - ../defaults/main.yml
+    - vars/one_source_trace.yml
+    - ../vars/main.yml
+  vars:
+    odbc: "{{ lookup('template', '../templates/odbc.ini.j2') }}"
+  tasks:
+    - name: verify odbc.ini content
+      assert:
+        that:
+          - odbc | search('[traced data source]')
+          - odbc | search('driver = file')
+          - odbc | search('trace = on')
+          - odbc | search('tracefile = /path/to/tracefile')
+
+
+- name: test two sources
+  hosts: localhost
+  vars_files:
+    - ../defaults/main.yml
+    - vars/two_sources.yml
+    - ../vars/main.yml
+  vars:
+    odbc: "{{ lookup('template', '../templates/odbc.ini.j2') }}"
+  tasks:
+    - name: verify odbc.ini content
+      assert:
+        that:
+          - odbc | search('[source 1]')
+          - odbc | search('driver = /file/1')
+          - odbc | search('property_1 = value_1')
+          - odbc | search('[source 2]')
+          - odbc | search('driver = /file/2')
+          - odbc | search('property_2_1 = value_2_1')
+          - odbc | search('property_2_2 = value_2_2')

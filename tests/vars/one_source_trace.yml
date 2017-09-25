@@ -1,0 +1,6 @@
+---
+  unixodbc_cfg_sources:
+    'traced data source':
+      driver_file: file
+      tracefile: /path/to/tracefile
+      
