@@ -1,7 +1,7 @@
 ---
 # vars file for ansible-unixodbc-cfg
 _unixodbc_cfg_odbcini_path: "{{ unixodbc_cfg_odbcini_path if unixodbc_cfg_odbcini_path else
-                                ansible_env.HOME }}"
+                                '/home/' ~ _unixodbc_cfg_user }}"
 
 _unixodbc_cfg_sources: "{{ unixodbc_cfg_sources if unixodbc_cfg_sources else {} }}"
 

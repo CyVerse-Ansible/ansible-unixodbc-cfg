@@ -7,6 +7,21 @@
   post_tasks:
     - name: verify that .odbc.ini is deposited
       stat:
-        path: "{{ ansible_env.HOME }}/.odbc.ini"
+        path: /home/{{ ansible_user }}/.odbc.ini
       register: response
-      failed_when: not response.stat.exists or response.stat.pw_name != ansible_env.USER
+      failed_when: not response.stat.exists or response.stat.pw_name != ansible_user
+
+
+- name: test that file placed in custom location
+  hosts: localhost
+  roles:
+    - role: ../../ansible-unixodbc-cfg
+      vars:
+        unixodbc_cfg_odbcini_path: /tmp
+
+  post_tasks:
+    - name: verify that .odbc.ini is deposited
+      stat:
+        path: /tmp/.odbc.ini
+      register: response
+      failed_when: not response.stat.exists or response.stat.pw_name != ansible_user
