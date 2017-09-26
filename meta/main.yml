@@ -4,7 +4,7 @@ galaxy_info:
   description: an ansible role for configuring user .odbc.ini files
   company: CyVerse
   license: See license.md
-  min_ansible_version: 2.2.1
+  min_ansible_version: 2.3.1
 
   platforms:
     - name: Ubuntu
