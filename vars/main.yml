@@ -1,5 +1,7 @@
 ---
 # vars file for ansible-unixodbc-cfg
+_unixodbc_cfg_defer: "{{ unixodbc_cfg_defer if unixodbc_cfg_defer else false }}"
+
 _unixodbc_cfg_odbcini_path: "{{ unixodbc_cfg_odbcini_path if unixodbc_cfg_odbcini_path else
                                 '/home/' ~ _unixodbc_cfg_user }}"
 

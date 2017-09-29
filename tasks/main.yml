@@ -1,8 +1,4 @@
 ---
 # tasks file for ansible-unixodbc-cfg
-- name: Generate .odbc.ini file
-  template:
-    src: odbc.ini.j2
-    dest: "{{ _unixodbc_cfg_odbcini_path }}/.odbc.ini"
-    owner: "{{ _unixodbc_cfg_user }}"
-    
+- include: odbc.yml
+  when: not _unixodbc_cfg_defer

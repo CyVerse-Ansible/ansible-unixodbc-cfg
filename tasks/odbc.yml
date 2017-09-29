@@ -1,0 +1,6 @@
+---
+- name: Generate .odbc.ini file
+  template:
+    src: odbc.ini.j2
+    dest: "{{ _unixodbc_cfg_odbcini_path }}/.odbc.ini"
+    owner: "{{ _unixodbc_cfg_user }}"

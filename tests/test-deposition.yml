@@ -12,6 +12,31 @@
       failed_when: not response.stat.exists or response.stat.pw_name != ansible_user
 
 
+- name: test defer
+  hosts: localhost
+  vars:
+    test_dir: /tmp/testdefer
+
+  pre_tasks:
+    - name: create test folder
+      file:
+        path: "{{ test_dir }}"
+        state: directory
+
+  roles:
+    - role: ../../ansible-unixodbc-cfg
+      vars:
+        unixodbc_cfg_defer: true
+        unixodbc_cfg_odbcini_path: "{{ test_dir }}"
+
+  post_tasks:
+    - name: verify that .odbc.ini isn't deposited
+      stat:
+        path: "{{ test_dir }}/.odbc.ini"
+      register: response
+      failed_when: response.stat.exists
+
+
 - name: test that file placed in custom location
   hosts: localhost
   roles:

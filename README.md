@@ -19,9 +19,12 @@ Here are the role variables. None of them are required.
 
 Variable                    | Default                   | Comment
 --------------------------- | --------------------------| -------
+`unixodbc_cfg_defer`        | false                     | Whether or not to defer execution. _See below_.
 `unixodbc_cfg_odbcini_path` | /home/`unixodbc_cfg_user` | This is directory where `.odbc.ini` file will be place.
 `unixodbc_cfg_sources`      | {}                        | A dictionary defining the data sources. _See below_.
 `unixodbc_cfg_user`         | `ansible_user`            | The `.odbc.ini` will be generated for the given user.
+
+If `unixodbc_cfg_defer` is `true`, the role will make know changes when its main task is run. This allows the implicit dependency management of through the meta file to be used when this role is used by another role through an `include_role` task.
 
 Each item in the `unixodbc_cfg_sources` dictionary has a key that is the name of the source with the value being a map with the following fields.
 
