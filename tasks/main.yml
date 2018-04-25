@@ -1,4 +1,4 @@
 ---
 # tasks file for ansible-unixodbc-cfg
-- include: odbc.yml
+- include_tasks: odbc.yml
   when: not _unixodbc_cfg_defer
