@@ -22,6 +22,7 @@ Here are the role variables. None of them are required.
 Variable                    | Default                   | Comment
 --------------------------- | --------------------------| -------
 `unixodbc_cfg_defer`        | false                     | Whether or not to defer execution. _See below_.
+`unixodbc_cfg_group`        | `unixodbc_cfg_user`       | The `.odbc.ini` will be generated for this group.
 `unixodbc_cfg_odbcini_path` | /home/`unixodbc_cfg_user` | This is directory where `.odbc.ini` file will be place.
 `unixodbc_cfg_sources`      | {}                        | A dictionary defining the data sources. _See below_.
 `unixodbc_cfg_user`         | `ansible_user`            | The `.odbc.ini` will be generated for the given user.

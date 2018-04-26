@@ -1,0 +1,14 @@
+---
+# Required Variables:
+#  dir    The directory where the file is deposited
+#  group  The group name the file should have
+#  user   The owner of the file
+
+- name: verify that .odbc.ini is deposited
+  stat:
+    path: "{{ dir }}/.odbc.ini"
+  register: response
+  failed_when: >
+    not response.stat.exists or
+    response.stat.pw_name != user or
+    response.stat.gr_name != group

@@ -8,7 +8,7 @@ sudo: required
 addons:
   apt:
     packages:
-    - python-pip
+      - python-pip
 
 install:
   # Install ansible
@@ -21,6 +21,9 @@ install:
   - printf '[defaults]\nroles_path=../' > ansible.cfg
 
 before_script:
+  # Create test group
+  - sudo groupadd group
+
   # Create test user
   - sudo useradd --create-home user
 

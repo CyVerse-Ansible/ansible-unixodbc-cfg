@@ -5,11 +5,11 @@
     - role: ../../ansible-unixodbc-cfg
 
   post_tasks:
-    - name: verify that .odbc.ini is deposited
-      stat:
-        path: /home/{{ ansible_user }}/.odbc.ini
-      register: response
-      failed_when: not response.stat.exists or response.stat.pw_name != ansible_user
+    - include_tasks: tasks/verify-odbc-deposited.yml
+      vars:
+        dir: /home/{{ ansible_user }}
+        user: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
 
 
 - name: test defer
@@ -45,11 +45,11 @@
         unixodbc_cfg_odbcini_path: /tmp
 
   post_tasks:
-    - name: verify that .odbc.ini is deposited
-      stat:
-        path: /tmp/.odbc.ini
-      register: response
-      failed_when: not response.stat.exists or response.stat.pw_name != ansible_user
+    - include_tasks: tasks/verify-odbc-deposited.yml
+      vars:
+        dir: /tmp
+        user: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
 
 
 - name: test that a custom user can be set
@@ -61,8 +61,34 @@
         unixodbc_cfg_user: user
 
   post_tasks:
-    - name: verify that .odbc.ini is deposited
-      stat:
-        path: /home/user/.odbc.ini
-      register: response
-      failed_when: not response.stat.exists or response.stat.pw_name != 'user'
+    - include_tasks: tasks/verify-odbc-deposited.yml
+      vars:
+        dir: /home/user
+        user: user
+        group: user
+
+
+- name: test that a custom group can be set
+  hosts: localhost
+  become: true
+  vars:
+    test_dir: /tmp/group
+
+  pre_tasks:
+    - name: create test folder
+      file:
+        path: "{{ test_dir }}"
+        state: directory
+
+  roles:
+    - role: ../../ansible-unixodbc-cfg
+      vars:
+        unixodbc_cfg_group: group
+        unixodbc_cfg_odbcini_path: "{{ test_dir }}"
+
+  post_tasks:
+    - include_tasks: tasks/verify-odbc-deposited.yml
+      vars:
+        dir: "{{ test_dir }}"
+        user: "{{ ansible_user }}"
+        group: group
