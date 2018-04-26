@@ -1,4 +1,4 @@
 ---
 unixodbc_cfg_sources:
-  'data source':
+  - source_name: data source
     driver_file: /path/to/driver/shared/object

@@ -1,10 +1,10 @@
 ---
 unixodbc_cfg_sources:
-  'source 1':
+  - source_name: source 1
     driver_file: /file/1
     driver_properties:
       property_1: value_1
-  'source 2':
+  - source_name: source 2
     driver_file: /file/2
     driver_properties:
       property_2_1: value_2_1

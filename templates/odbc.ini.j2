@@ -1,12 +1,12 @@
-{% for source, properties in _unixodbc_cfg_sources.iteritems() %}
-[{{ source }}]
-driver = {{ properties.driver_file }}
-{%   if properties.tracefile is defined and properties.tracefile != none %}
+{% for source in _unixodbc_cfg_sources %}
+[{{ source.source_name }}]
+driver = {{ source.driver_file }}
+{%   if source.tracefile is defined and source.tracefile != none %}
 trace = on
-tracefile = {{ properties.tracefile }}
+tracefile = {{ source.tracefile }}
 {%   endif %}
-{%   if properties.driver_properties is defined and properties.driver_properties != none %}
-{%     for property, value in properties.driver_properties.iteritems() %}
+{%   if source.driver_properties is defined and source.driver_properties != none %}
+{%     for property, value in source.driver_properties.iteritems() %}
 {{ property }} = {{ value }}
 {%     endfor %}
 {%   endif %}
