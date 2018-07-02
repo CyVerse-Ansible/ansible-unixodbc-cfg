@@ -1,7 +1,7 @@
 unixodbc-cfg
 ============
 [![Build Status](https://travis-ci.org/CyVerse-Ansible/ansible-unixodbc-cfg.svg?branch=master)](https://travis-ci.org/CyVerse-Ansible/ansible-unixodbc-cfg)
-[![Ansible Galaxy](https://img.shields.io/badge/role-CyVerse__Ansible.unixodbc--cfg-blue.svg)](https://galaxy.ansible.com/CyVerse-Ansible/unixodbc-cfg/)
+[![Ansible Galaxy](https://img.shields.io/badge/role-CyVerse__Ansible.unixodbc--cfg-blue.svg)](https://galaxy.ansible.com/CyVerse_Ansible/unixodbc-cfg/)
 
 This role manages the configuration files for unixODBC. At the moment, it can
 configure user `.odbc.ini` files, but in the future it will be able to manage
@@ -55,7 +55,7 @@ Here's an example where the role is run from a play.
 
     - hosts: servers
       roles:
-         - role: CyVerse-Ansible.unixodbc-cfg
+         - role: CyVerse_Ansible.unixodbc-cfg
            vars:
              unixodbc_cfg_sources:
                - source_name: postgres
@@ -73,7 +73,7 @@ Here's an example where the role's `odbc.yml` tasks are run from an
 `include_role` task.
 
     - include_role:
-        name: CyVerse-Ansible.unixodbc-cfg
+        name: CyVerse_Ansible.unixodbc-cfg
         tasks_from: odbc.yml
       vars:
         unixodbc_cfg_odbcini_path: /var/lib/irods
