@@ -3,7 +3,7 @@ galaxy_info:
   author: Tony Edgin
   description: an ansible role for configuring user .odbc.ini files
   company: CyVerse
-  license: See license.md
+  license: See LICENSE.txt
   min_ansible_version: 2.4
 
   platforms:

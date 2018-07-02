@@ -94,7 +94,7 @@ Here's an example where the role's `odbc.yml` tasks are run from an
 License
 -------
 
-See [license](/license.md).
+See [license](/LICENSE.txt).
 
 
 Author Information
