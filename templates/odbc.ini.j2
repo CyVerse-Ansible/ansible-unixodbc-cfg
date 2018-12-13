@@ -6,7 +6,7 @@ trace = on
 tracefile = {{ source.tracefile }}
 {%   endif %}
 {%   if source.driver_properties is defined and source.driver_properties != none %}
-{%     for property, value in source.driver_properties.iteritems() %}
+{%     for property, value in source.driver_properties.items() %}
 {{ property }} = {{ value }}
 {%     endfor %}
 {%   endif %}

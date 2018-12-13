@@ -25,8 +25,8 @@
     - name: verify odbc.ini content
       assert:
         that:
-          - odbc | search('[data source]')
-          - odbc | search('driver = /path/to/driver/shared/object')
+          - odbc is search('[data source]')
+          - odbc is search('driver = /path/to/driver/shared/object')
 
 
 - name: test one source with tracefile
@@ -41,10 +41,10 @@
     - name: verify odbc.ini content
       assert:
         that:
-          - odbc | search('[traced data source]')
-          - odbc | search('driver = file')
-          - odbc | search('trace = on')
-          - odbc | search('tracefile = /path/to/tracefile')
+          - odbc is search('[traced data source]')
+          - odbc is search('driver = file')
+          - odbc is search('trace = on')
+          - odbc is search('tracefile = /path/to/tracefile')
 
 
 - name: test two sources
@@ -59,10 +59,10 @@
     - name: verify odbc.ini content
       assert:
         that:
-          - odbc | search('[source 1]')
-          - odbc | search('driver = /file/1')
-          - odbc | search('property_1 = value_1')
-          - odbc | search('[source 2]')
-          - odbc | search('driver = /file/2')
-          - odbc | search('property_2_1 = value_2_1')
-          - odbc | search('property_2_2 = value_2_2')
+          - odbc is search('[source 1]')
+          - odbc is search('driver = /file/1')
+          - odbc is search('property_1 = value_1')
+          - odbc is search('[source 2]')
+          - odbc is search('driver = /file/2')
+          - odbc is search('property_2_1 = value_2_1')
+          - odbc is search('property_2_2 = value_2_2')
